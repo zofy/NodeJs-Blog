@@ -3,10 +3,18 @@
 Simple blog developed on cloud9 using NodeJs and Mongo in the background.
 HTTP routes follow RESTful pattern, so we have:
 
-###index - contains all blog posts
+####index
 
-###show - shows specific post
+contains all blog posts
 
-###new - form for creating new post
+####show
 
-###edit - update and save specific blog post
+shows specific post
+
+####new 
+
+form for creating new post
+
+####edit 
+
+update and save specific blog post
