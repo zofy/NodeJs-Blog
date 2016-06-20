@@ -1,4 +1,5 @@
 var express = require("express"),
+    expressSanitizer = require("express-sanitizer"),
     methodOverride = require('method-override'),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
@@ -9,6 +10,7 @@ mongoose.connect('mongodb://localhost/REstfulBlogApp2');
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(expressSanitizer());
 app.use(methodOverride('_method'));
 
 // MONGOOSE/MODEL CONFIG
@@ -42,6 +44,9 @@ app.get('/blogs', function(req, res){
 
 // Create route
 app.post('/blogs', function(req, res){
+    console.log(req.body);
+    req.body.blog.body = req.sanitize(req.body.blog.body);
+    console.log(req.body);
     Blog.create(req.body.blog, function(err, newBlog){
         if (err){
             res.render('new');
